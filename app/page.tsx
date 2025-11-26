@@ -1,119 +1,133 @@
 "use client";
 import { useState, useEffect } from "react";
-import { useQuickAuth,useMiniKit } from "@coinbase/onchainkit/minikit";
-import { useRouter } from "next/navigation";
+import { useMiniKit } from "@coinbase/onchainkit/minikit";
 import { minikitConfig } from "../minikit.config";
 import styles from "./page.module.css";
 
-interface AuthResponse {
-  success: boolean;
-  user?: {
-    fid: number; // FID is the unique identifier for the user
-    issuedAt?: number;
-    expiresAt?: number;
-  };
-  message?: string; // Error messages come as 'message' not 'error'
-}
-
+const ANSWERS = [
+  "Yes",
+  "No",
+  "Definitely",
+  "Absolutely not",
+  "Maybe",
+  "Ask again later",
+  "Without a doubt",
+  "Don't count on it",
+  "Very likely",
+  "Unlikely",
+  "Certainly",
+  "Not a chance",
+  "It is certain",
+  "Very doubtful",
+  "Signs point to yes"
+];
 
 export default function Home() {
   const { isFrameReady, setFrameReady, context } = useMiniKit();
-  const [email, setEmail] = useState("");
-  const [error, setError] = useState("");
-  const router = useRouter();
+  const [question, setQuestion] = useState("");
+  const [answer, setAnswer] = useState("");
+  const [isShaking, setIsShaking] = useState(false);
+  const [showAnswer, setShowAnswer] = useState(false);
 
-  // Initialize the  miniapp
+  // Initialize the miniapp
   useEffect(() => {
     if (!isFrameReady) {
       setFrameReady();
     }
   }, [setFrameReady, isFrameReady]);
- 
-  
 
-  // If you need to verify the user's identity, you can use the useQuickAuth hook.
-  // This hook will verify the user's signature and return the user's FID. You can update
-  // this to meet your needs. See the /app/api/auth/route.ts file for more details.
-  // Note: If you don't need to verify the user's identity, you can get their FID and other user data
-  // via `context.user.fid`.
-  // const { data, isLoading, error } = useQuickAuth<{
-  //   userFid: string;
-  // }>("/api/auth");
+  const handleAskQuestion = () => {
+    if (!question.trim()) {
+      return;
+    }
 
-  const { data: authData, isLoading: isAuthLoading, error: authError } = useQuickAuth<AuthResponse>(
-    "/api/auth",
-    { method: "GET" }
-  );
+    setIsShaking(true);
+    setShowAnswer(false);
+    setAnswer("");
 
-  const validateEmail = (email: string) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
+    // Simulate shaking animation
+    setTimeout(() => {
+      setIsShaking(false);
+      const randomAnswer = ANSWERS[Math.floor(Math.random() * ANSWERS.length)];
+      setAnswer(randomAnswer);
+      setShowAnswer(true);
+    }, 1500);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setError("");
-
-    // Check authentication first
-    if (isAuthLoading) {
-      setError("Please wait while we verify your identity...");
-      return;
-    }
-
-    if (authError || !authData?.success) {
-      setError("Please authenticate to join the waitlist");
-      return;
-    }
-
-    if (!email) {
-      setError("Please enter your email address");
-      return;
-    }
-
-    if (!validateEmail(email)) {
-      setError("Please enter a valid email address");
-      return;
-    }
-
-    // TODO: Save email to database/API with user FID
-    console.log("Valid email submitted:", email);
-    console.log("User authenticated:", authData.user);
-    
-    // Navigate to success page
-    router.push("/success");
+  const handleReset = () => {
+    setQuestion("");
+    setAnswer("");
+    setShowAnswer(false);
   };
 
   return (
     <div className={styles.container}>
-      <button className={styles.closeButton} type="button">
-        ✕
-      </button>
-      
       <div className={styles.content}>
-        <div className={styles.waitlistForm}>
-          <h1 className={styles.title}>Join {minikitConfig.miniapp.name.toUpperCase()}</h1>
-          
-          <p className={styles.subtitle}>
-             Hey {context?.user?.displayName || "there"}, Get early access and be the first to experience the future of<br />
-            crypto marketing strategy.
-          </p>
+        <h1 className={styles.title}>{minikitConfig.miniapp.name}</h1>
+        <p className={styles.tagline}>{minikitConfig.miniapp.tagline}</p>
 
-          <form onSubmit={handleSubmit} className={styles.form}>
+        {context?.user?.displayName && (
+          <p className={styles.greeting}>
+            Hello, {context.user.displayName}!
+          </p>
+        )}
+
+        <div className={styles.magicBallSection}>
+          <div 
+            className={`${styles.magicBall} ${isShaking ? styles.shaking : ""}`}
+            onClick={question.trim() ? handleAskQuestion : undefined}
+            style={{ cursor: question.trim() ? "pointer" : "default" }}
+          >
+            <div className={styles.ballInner}>
+              {showAnswer ? (
+                <div className={styles.answerWindow}>
+                  <span className={styles.answerText}>{answer}</span>
+                </div>
+              ) : (
+                <div className={styles.ballNumber}>8</div>
+              )}
+            </div>
+          </div>
+
+          <div className={styles.questionSection}>
             <input
-              type="email"
-              placeholder="Your amazing email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className={styles.emailInput}
+              type="text"
+              placeholder="Ask a yes/no question..."
+              value={question}
+              onChange={(e) => setQuestion(e.target.value)}
+              className={styles.questionInput}
+              disabled={isShaking}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && question.trim()) {
+                  handleAskQuestion();
+                }
+              }}
             />
             
-            {error && <p className={styles.error}>{error}</p>}
-            
-            <button type="submit" className={styles.joinButton}>
-              JOIN WAITLIST
-            </button>
-          </form>
+            {!showAnswer ? (
+              <button
+                onClick={handleAskQuestion}
+                className={styles.askButton}
+                disabled={!question.trim() || isShaking}
+              >
+                {isShaking ? "Thinking..." : "Ask the Oracle"}
+              </button>
+            ) : (
+              <button
+                onClick={handleReset}
+                className={styles.resetButton}
+              >
+                Ask Another Question
+              </button>
+            )}
+          </div>
         </div>
+
+        <p className={styles.instruction}>
+          {showAnswer 
+            ? "Got your answer! Ask another question or share your result." 
+            : "Type your question and tap the magic ball to reveal your answer."}
+        </p>
       </div>
     </div>
   );

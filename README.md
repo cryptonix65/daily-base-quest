@@ -1,9 +1,8 @@
-# Waitlist Mini App Quickstart
+# SeerBase - Magic Oracle Mini App
 
-This is a demo Mini App application built using OnchainKit and the Farcaster SDK. Build a waitlist sign-up mini app for your company that can be published to the Base app and Farcaster. 
+SeerBase is a mystical oracle Mini App built using OnchainKit and the Farcaster SDK. Get instant Yes or No answers to your burning questions by consulting the magic ball. Just ask a question and tap the screen to reveal your answer!
 
-> [!IMPORTANT]  
-> Before interacting with this demo, please review our [disclaimer](#disclaimer) — there are **no official tokens or apps** associated with Cubey, Base, or Coinbase.
+This app can be published to the Base app and Farcaster as a fully functional Mini App.
 
 ## Prerequisites
 
@@ -14,36 +13,47 @@ Before getting started, make sure you have:
 * [Vercel](https://vercel.com/) account for hosting the application
 * [Coinbase Developer Platform](https://portal.cdp.coinbase.com/) Client API Key
 
+## Features
+
+- 🔮 Interactive magic ball interface
+- ✨ Random yes/no answers to your questions
+- 🎨 Beautiful, minimal Apple-inspired design
+- 📱 Fully responsive mobile-first UI
+- 🔗 Integration with Farcaster for sharing
+- ⚡ Built on Base with OnchainKit
+
 ## Getting Started
 
-### 1. Clone this repository 
+### 1. Install dependencies:
 
 ```bash
-git clone https://github.com/base/demos.git
-```
-
-### 2. Install dependencies:
-
-```bash
-cd demos/minikit/waitlist-mini-app-qs
 npm install
 ```
 
-### 3. Configure environment variables
+### 2. Configure environment variables
 
 Create a `.env.local` file and add your environment variables:
 
 ```bash
-NEXT_PUBLIC_PROJECT_NAME="Your App Name"
 NEXT_PUBLIC_ONCHAINKIT_API_KEY=<Replace-WITH-YOUR-CDP-API-KEY>
 NEXT_PUBLIC_URL=
 ```
 
-### 4. Run locally:
+### 3. Run locally:
 
 ```bash
 npm run dev
 ```
+
+Open [http://localhost:3000](http://localhost:3000) to see the magic ball in action!
+
+## How It Works
+
+1. **Ask a Question**: Type any yes/no question in the input field
+2. **Tap the Ball**: Click on the magic ball (or press Enter)
+3. **Get Your Answer**: Watch the ball shake and reveal your answer
+4. **Ask Again**: Reset and ask another question anytime
+5. **Share**: Share your experience on Farcaster
 
 ## Customization
 
@@ -51,9 +61,15 @@ npm run dev
 
 The `minikit.config.ts` file configures your manifest located at `app/.well-known/farcaster.json`.
 
-**Skip the `accountAssociation` object for now.**
+You can customize:
+- **name**: The app name displayed to users
+- **subtitle**: Short tagline
+- **description**: Full description of your app
+- **tags**: Categories and keywords
+- **images**: Icon, hero image, and screenshots
+- **splashBackgroundColor**: The background color shown on launch
 
-To personalize your app, change the `name`, `subtitle`, and `description` fields and add images to your `/public` folder. Then update their URLs in the file.
+All images are located in the `/public` folder and referenced in the config.
 
 ## Deployment
 
@@ -129,31 +145,48 @@ Go to [base.dev/preview](https://base.dev/preview) to validate your app:
 
 ### 2. Publish to Base App
 
-To publish your app, create a post in the Base app with your app's URL.
+To publish your app, create a post in the Base app with your app's URL and watch your Mini App come to life!
+
+## Tech Stack
+
+- **Next.js 15** - React framework
+- **OnchainKit** - Coinbase's toolkit for onchain apps
+- **Farcaster SDK** - Integration with Farcaster protocol
+- **TypeScript** - Type-safe development
+- **CSS Modules** - Scoped styling
+
+## API Routes
+
+### `/api/auth`
+Handles Farcaster authentication using Quick Auth. Verifies JWT tokens and returns user information.
+
+### `/api/webhook`
+Receives webhook events from Farcaster for app installations, uninstalls, and notifications.
+
+## File Structure
+
+```
+seer_base1/
+├── app/
+│   ├── api/
+│   │   ├── auth/          # Authentication endpoint
+│   │   └── webhook/       # Webhook handler
+│   ├── success/           # Success/share page
+│   ├── page.tsx           # Main magic ball interface
+│   ├── layout.tsx         # Root layout with metadata
+│   └── rootProvider.tsx   # OnchainKit provider setup
+├── public/                # Static assets (images)
+├── minikit.config.ts      # Mini app configuration
+└── package.json
+```
 
 ## Learn More
 
-For detailed step-by-step instructions, see the [Create a Mini App tutorial](https://docs.base.org/docs/mini-apps/quickstart/create-new-miniapp/) in the Base documentation.
+For detailed step-by-step instructions, see the official guides:
+- [Create a Mini App tutorial](https://docs.base.org/mini-apps/quickstart/create-new-miniapp/)
+- [OnchainKit Documentation](https://onchainkit.xyz/)
+- [Farcaster Mini Apps](https://miniapps.farcaster.xyz/)
 
+## License
 
----
-
-## Disclaimer  
-
-This project is a **demo application** created by the **Base / Coinbase Developer Relations team** for **educational and demonstration purposes only**.  
-
-**There is no token, cryptocurrency, or investment product associated with Cubey, Base, or Coinbase.**  
-
-Any social media pages, tokens, or applications claiming to be affiliated with, endorsed by, or officially connected to Cubey, Base, or Coinbase are **unauthorized and fraudulent**.  
-
-We do **not** endorse or support any third-party tokens, apps, or projects using the Cubey name or branding.  
-
-> [!WARNING]
-> Do **not** purchase, trade, or interact with any tokens or applications claiming affiliation with Coinbase, Base, or Cubey.  
-> Coinbase and Base will never issue a token or ask you to connect your wallet for this demo.  
-
-For official Base developer resources, please visit:  
-- [https://base.org](https://base.org)  
-- [https://docs.base.org](https://docs.base.org)  
-
----
+MIT

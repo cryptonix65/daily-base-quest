@@ -1,16 +1,17 @@
 "use client";
 
 import { useComposeCast } from '@coinbase/onchainkit/minikit';
+import { useRouter } from "next/navigation";
 import { minikitConfig } from "../../minikit.config";
 import styles from "./page.module.css";
 
 export default function Success() {
-
   const { composeCastAsync } = useComposeCast();
+  const router = useRouter();
   
   const handleShare = async () => {
     try {
-      const text = `Yay! I just joined the waitlist for ${minikitConfig.miniapp.name.toUpperCase()}! `;
+      const text = `Just consulted the ${minikitConfig.miniapp.name} oracle! 🔮 Ask your own yes/no questions now!`;
       
       const result = await composeCastAsync({
         text: text,
@@ -28,6 +29,10 @@ export default function Success() {
     }
   };
 
+  const handleBackToOracle = () => {
+    router.push("/");
+  };
+
   return (
     <div className={styles.container}>
       <button className={styles.closeButton} type="button">
@@ -36,23 +41,23 @@ export default function Success() {
       
       <div className={styles.content}>
         <div className={styles.successMessage}>
-          <div className={styles.checkmark}>
-            <div className={styles.checkmarkCircle}>
-              <div className={styles.checkmarkStem}></div>
-              <div className={styles.checkmarkKick}></div>
-            </div>
-          </div>
+          <div className={styles.orbIcon}>🔮</div>
           
-          <h1 className={styles.title}>Welcome to the {minikitConfig.miniapp.name.toUpperCase()}!</h1>
+          <h1 className={styles.title}>The Oracle Has Spoken!</h1>
           
           <p className={styles.subtitle}>
-            You&apos;re in! We&apos;ll notify you as soon as we launch.<br />
-            Get ready to experience the future of onchain marketing.
+            Thanks for consulting {minikitConfig.miniapp.name}.<br />
+            Share your experience with others!
           </p>
 
-          <button onClick={handleShare} className={styles.shareButton}>
-            SHARE
-          </button>
+          <div className={styles.buttonGroup}>
+            <button onClick={handleShare} className={styles.shareButton}>
+              SHARE ON FARCASTER
+            </button>
+            <button onClick={handleBackToOracle} className={styles.backButton}>
+              ASK AGAIN
+            </button>
+          </div>
         </div>
       </div>
     </div>
