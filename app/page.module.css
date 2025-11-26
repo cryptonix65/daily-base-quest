@@ -38,7 +38,19 @@
 .greeting {
   font-size: 0.9rem;
   color: rgba(255, 255, 255, 0.5);
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
+}
+
+.priceTag {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fbbf24;
+  background: rgba(251, 191, 36, 0.1);
+  padding: 0.5rem 1.5rem;
+  border-radius: 20px;
+  margin-bottom: 1.5rem;
+  border: 2px solid rgba(251, 191, 36, 0.3);
+  animation: pulse 2s ease-in-out infinite;
 }
 
 .magicBallSection {
@@ -118,9 +130,57 @@
   animation: fadeIn 0.5s ease-in;
 }
 
+.processingWindow {
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  box-shadow: 
+    inset 0 0 20px rgba(0, 0, 0, 0.2),
+    0 0 40px rgba(251, 191, 36, 0.5);
+  animation: pulseGlow 1s ease-in-out infinite;
+}
+
+.processingText {
+  font-size: 3rem;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 
+      inset 0 0 20px rgba(0, 0, 0, 0.2),
+      0 0 40px rgba(251, 191, 36, 0.5);
+  }
+  50% {
+    box-shadow: 
+      inset 0 0 20px rgba(0, 0, 0, 0.2),
+      0 0 60px rgba(251, 191, 36, 0.8);
+  }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
+}
+
+.error {
+  color: #ef4444;
+  font-size: 0.9rem;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  background: rgba(239, 68, 68, 0.1);
+  border-radius: 8px;
+  border: 1px solid rgba(239, 68, 68, 0.3);
 }
 
 .questionSection {
