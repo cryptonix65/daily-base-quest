@@ -9,7 +9,7 @@ import styles from "./page.module.css";
 // USDC contract address on Base
 const USDC_ADDRESS = "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913" as Address;
 const PAYMENT_AMOUNT = "0.1"; // 0.1 USDC
-const ORACLE_WALLET = "0x742d35Cc6634C0532925a3b844Bc454e4438f44e" as Address; // Замените на ваш адрес
+const ORACLE_WALLET = "0xeCF05e29657A0f2242796E803E3e59538dE56526" as Address; // Ваш адрес Base кошелька
 
 // ERC20 Transfer ABI
 const ERC20_ABI = [
