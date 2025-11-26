@@ -27,7 +27,7 @@ export const minikitConfig = {
     primaryCategory: "utility",
     tags: ["oracle", "predictor", "yes/no", "minimal", "apple", "tool"],
     heroImageUrl: `${ROOT_URL}/hero-apple-magic-ball.png`,
-    tagline: "Question. Touch. Answer.",
+    tagline: "Ask. Touch. Get an answer.",
     ogTitle: "SeerBase",
     ogDescription: "Get an instant Yes or No answer to any of your questions. Just tap on the magic ball!",
     ogImageUrl: `${ROOT_URL}/hero-apple-magic-ball.png`,
