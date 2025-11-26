@@ -32,5 +32,8 @@ export const minikitConfig = {
     ogDescription: "Get an instant Yes or No answer to any of your questions. Just tap on the magic ball!",
     ogImageUrl: `${ROOT_URL}/hero-apple-magic-ball.png`,
   },
+  baseBuilder: {
+    ownerAddress: "0xeCF05e29657A0f2242796E803E3e59538dE56526"
+  }
 } as const;
 
