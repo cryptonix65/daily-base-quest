@@ -25,7 +25,7 @@ export async function generateMetadata(): Promise<Metadata> {
         version: minikitConfig.miniapp.version,
         imageUrl: minikitConfig.miniapp.ogImageUrl,
         button: {
-          title: `Join the ${minikitConfig.miniapp.name} Waitlist`,
+          title: "The Magic Oracle SeerBase",
           action: {
             name: `Launch ${minikitConfig.miniapp.name}`,
             type: "launch_frame",
