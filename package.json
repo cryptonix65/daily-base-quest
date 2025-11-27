@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "convert-embed": "node scripts/convert-svg-to-png.js",
-    "generate-icon": "node scripts/generate-icon.js"
+    "generate-icon": "node scripts/generate-icon.js",
+    "generate-hero": "node scripts/generate-hero.js"
   },
   "dependencies": {
     "@coinbase/onchainkit": "latest",

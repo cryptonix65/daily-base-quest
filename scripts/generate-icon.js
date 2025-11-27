@@ -3,8 +3,8 @@ const fs = require('fs');
 const path = require('path');
 
 async function generateIcon() {
-  const svgPath = path.join(__dirname, '../public/icon-magic-ball-8.svg');
-  const iconPath = path.join(__dirname, '../public/icon-magic-ball-8.png');
+  const svgPath = path.join(__dirname, '../public/icon-magic-ball-infinity.svg');
+  const iconPath = path.join(__dirname, '../public/icon-magic-ball-infinity.png');
   
   try {
     // Read SVG file

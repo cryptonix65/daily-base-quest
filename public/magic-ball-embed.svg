@@ -72,11 +72,11 @@
   <ellipse cx="520" cy="270" rx="50" ry="70" fill="rgba(0, 0, 0, 0.4)"/>
   <ellipse cx="560" cy="250" rx="40" ry="50" fill="rgba(255, 255, 255, 0.08)"/>
   
-  <!-- Number 8 -->
-  <text x="600" y="360" font-family="Arial, sans-serif" font-size="180" font-weight="700" 
+  <!-- Infinity symbol (∞) - horizontal figure-8 -->
+  <text x="600" y="360" font-family="Arial, sans-serif" font-size="200" font-weight="700" 
         fill="rgba(255, 255, 255, 0.95)" text-anchor="middle" 
         filter="url(#glow)" style="text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);">
-    8
+    ∞
   </text>
   
   <!-- Additional mystical particles/glow around ball -->
