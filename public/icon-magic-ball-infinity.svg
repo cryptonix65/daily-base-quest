@@ -69,43 +69,10 @@
   <!-- Shadow on ball -->
   <ellipse cx="200" cy="220" rx="40" ry="50" fill="rgba(0, 0, 0, 0.3)"/>
   
-  <!-- Infinity symbol (∞) - horizontal figure-8 -->
-  <g filter="url(#glow)" fill="rgba(255, 255, 255, 0.95)">
-    <!-- Left loop of infinity -->
-    <path d="M 180 256 
-             A 40 60 0 1 1 180 256 
-             A 40 60 0 1 0 180 256" 
-          stroke="rgba(255, 255, 255, 0.95)" 
-          stroke-width="18" 
-          fill="none" 
-          stroke-linecap="round"/>
-    
-    <!-- Right loop of infinity -->
-    <path d="M 332 256 
-             A 40 60 0 1 0 332 256 
-             A 40 60 0 1 1 332 256" 
-          stroke="rgba(255, 255, 255, 0.95)" 
-          stroke-width="18" 
-          fill="none" 
-          stroke-linecap="round"/>
-    
-    <!-- Connecting curves (top and bottom) -->
-    <path d="M 220 196 Q 256 236 292 196" 
-          stroke="rgba(255, 255, 255, 0.95)" 
-          stroke-width="18" 
-          fill="none" 
-          stroke-linecap="round"/>
-    <path d="M 220 316 Q 256 276 292 316" 
-          stroke="rgba(255, 255, 255, 0.95)" 
-          stroke-width="18" 
-          fill="none" 
-          stroke-linecap="round"/>
-  </g>
-  
-  <!-- Alternative: Simpler infinity symbol using text -->
-  <text x="256" y="280" font-family="Arial, sans-serif" font-size="120" font-weight="bold" 
+  <!-- Number 8 (vertical) -->
+  <text x="256" y="280" font-family="Arial, sans-serif" font-size="140" font-weight="bold" 
         fill="rgba(255, 255, 255, 0.95)" text-anchor="middle" dominant-baseline="middle" 
-        filter="url(#glow)">∞</text>
+        filter="url(#glow)">8</text>
   
   <!-- Mystical particles (smaller for icon) -->
   <circle cx="190" cy="200" r="4" fill="rgba(150, 150, 255, 0.4)"/>
