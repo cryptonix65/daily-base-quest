@@ -1,98 +1,140 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Generate Embed Image</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background: #1a1a1f;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-    }
-    .container {
-      width: 1200px;
-      height: 630px;
-      position: relative;
-      background: #1a1a1f;
-    }
-  </style>
+    <title>Generate Magic Ball Embed Image</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        canvas {
+            border: 1px solid #333;
+        }
+        .instructions {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
-      <!-- Background -->
-      <rect width="1200" height="630" fill="#1a1a1f"/>
-      
-      <!-- Mystical smoke/fog effect -->
-      <defs>
-        <!-- Gradient for the magic ball -->
-        <radialGradient id="ballGradient" cx="30%" cy="30%">
-          <stop offset="0%" stop-color="#2a2a35"/>
-          <stop offset="100%" stop-color="#0a0a0f"/>
-        </radialGradient>
+    <div class="instructions">
+        <h3>Инструкция:</h3>
+        <p>1. Правой кнопкой мыши на изображении</p>
+        <p>2. Выберите "Сохранить изображение как..."</p>
+        <p>3. Сохраните как "magic-ball-embed.png"</p>
+    </div>
+    <canvas id="canvas" width="1200" height="630"></canvas>
+    
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
         
-        <!-- Smoke/fog gradient -->
-        <radialGradient id="smokeGradient" cx="50%" cy="50%">
-          <stop offset="0%" stop-color="#6366f1" stop-opacity="0.3"/>
-          <stop offset="50%" stop-color="#8b5cf6" stop-opacity="0.2"/>
-          <stop offset="100%" stop-color="#a78bfa" stop-opacity="0.1"/>
-        </radialGradient>
+        // Background gradient
+        const bgGradient = ctx.createLinearGradient(0, 0, 1200, 630);
+        bgGradient.addColorStop(0, '#0a0a0f');
+        bgGradient.addColorStop(0.5, '#1a1a2e');
+        bgGradient.addColorStop(1, '#0a0a0f');
+        ctx.fillStyle = bgGradient;
+        ctx.fillRect(0, 0, 1200, 630);
         
-        <!-- Glow effect -->
-        <filter id="glow">
-          <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
-          <feMerge>
-            <feMergeNode in="coloredBlur"/>
-            <feMergeNode in="SourceGraphic"/>
-          </feMerge>
-        </filter>
-      </defs>
-      
-      <!-- Mystical smoke clouds around the ball -->
-      <ellipse cx="400" cy="200" rx="150" ry="100" fill="url(#smokeGradient)" opacity="0.4"/>
-      <ellipse cx="800" cy="250" rx="120" ry="80" fill="url(#smokeGradient)" opacity="0.3"/>
-      <ellipse cx="500" cy="450" rx="130" ry="90" fill="url(#smokeGradient)" opacity="0.35"/>
-      <ellipse cx="700" cy="400" rx="110" ry="70" fill="url(#smokeGradient)" opacity="0.3"/>
-      <ellipse cx="300" cy="400" rx="140" ry="95" fill="url(#smokeGradient)" opacity="0.4"/>
-      <ellipse cx="900" cy="350" rx="125" ry="85" fill="url(#smokeGradient)" opacity="0.3"/>
-      
-      <!-- Additional subtle smoke particles -->
-      <circle cx="350" cy="180" r="60" fill="#6366f1" opacity="0.15"/>
-      <circle cx="850" cy="220" r="50" fill="#8b5cf6" opacity="0.12"/>
-      <circle cx="450" cy="480" r="55" fill="#a78bfa" opacity="0.18"/>
-      <circle cx="750" cy="380" r="45" fill="#6366f1" opacity="0.14"/>
-      
-      <!-- Main Magic Ball -->
-      <circle cx="600" cy="315" r="180" fill="url(#ballGradient)" filter="url(#glow)"/>
-      
-      <!-- Inner shadow/highlight on ball -->
-      <ellipse cx="540" cy="270" rx="80" ry="80" fill="#ffffff" opacity="0.05"/>
-      <ellipse cx="480" cy="240" rx="60" ry="60" fill="#000000" opacity="0.3"/>
-      
-      <!-- The number 8 -->
-      <text x="600" y="360" font-family="Arial, sans-serif" font-size="180" font-weight="bold" 
-            fill="#ffffff" text-anchor="middle" filter="url(#glow)" opacity="0.95">
-        8
-      </text>
-      
-      <!-- Additional glow around the ball -->
-      <circle cx="600" cy="315" r="200" fill="none" stroke="#6366f1" stroke-width="2" opacity="0.2"/>
-      <circle cx="600" cy="315" r="220" fill="none" stroke="#8b5cf6" stroke-width="1" opacity="0.15"/>
-      
-      <!-- Title text -->
-      <text x="600" y="550" font-family="Arial, sans-serif" font-size="48" font-weight="bold" 
-            fill="#ffffff" text-anchor="middle">
-        SeerBase
-      </text>
-      <text x="600" y="590" font-family="Arial, sans-serif" font-size="28" 
-            fill="#a0a0a0" text-anchor="middle">
-        Ask. Touch. Get an answer.
-      </text>
-    </svg>
-  </div>
+        // Mystical mist layers
+        function drawMist(x, y, rx, ry, opacity) {
+            const gradient = ctx.createRadialGradient(x, y, 0, x, y, rx);
+            gradient.addColorStop(0, `rgba(100, 100, 150, ${opacity})`);
+            gradient.addColorStop(0.5, `rgba(150, 100, 200, ${opacity * 0.5})`);
+            gradient.addColorStop(1, `rgba(100, 150, 200, 0)`);
+            ctx.fillStyle = gradient;
+            ctx.beginPath();
+            ctx.ellipse(x, y, rx, ry, 0, 0, Math.PI * 2);
+            ctx.fill();
+        }
+        
+        // Draw mist layers
+        drawMist(600, 315, 400, 200, 0.15);
+        drawMist(500, 300, 350, 180, 0.1);
+        drawMist(700, 330, 380, 190, 0.12);
+        
+        // Ball shadow
+        const shadowGradient = ctx.createRadialGradient(600, 450, 0, 600, 450, 180);
+        shadowGradient.addColorStop(0, 'rgba(0, 0, 0, 0.4)');
+        shadowGradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+        ctx.fillStyle = shadowGradient;
+        ctx.beginPath();
+        ctx.ellipse(600, 450, 180, 60, 0, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // Magic ball gradient
+        const ballGradient = ctx.createRadialGradient(540, 255, 0, 600, 315, 200);
+        ballGradient.addColorStop(0, '#2a2a35');
+        ballGradient.addColorStop(0.5, '#1a1a1f');
+        ballGradient.addColorStop(1, '#0a0a0f');
+        
+        // Draw ball with glow effect
+        ctx.shadowBlur = 30;
+        ctx.shadowColor = 'rgba(100, 100, 255, 0.5)';
+        ctx.fillStyle = ballGradient;
+        ctx.beginPath();
+        ctx.arc(600, 315, 200, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.shadowBlur = 0;
+        
+        // Inner highlight
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.05)';
+        ctx.beginPath();
+        ctx.arc(540, 255, 60, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // Shadow on ball
+        const ballShadow = ctx.createRadialGradient(480, 280, 0, 480, 280, 100);
+        ballShadow.addColorStop(0, 'rgba(0, 0, 0, 0.3)');
+        ballShadow.addColorStop(1, 'rgba(0, 0, 0, 0)');
+        ctx.fillStyle = ballShadow;
+        ctx.beginPath();
+        ctx.ellipse(480, 280, 80, 100, 0, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // Number 8 with glow
+        ctx.shadowBlur = 20;
+        ctx.shadowColor = 'rgba(255, 255, 255, 0.8)';
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
+        ctx.font = 'bold 180px Arial';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('8', 600, 360);
+        ctx.shadowBlur = 0;
+        
+        // Mystical particles
+        const particles = [
+            {x: 450, y: 250, r: 8, color: 'rgba(150, 150, 255, 0.4)'},
+            {x: 750, y: 280, r: 6, color: 'rgba(200, 150, 255, 0.4)'},
+            {x: 550, y: 400, r: 10, color: 'rgba(100, 200, 255, 0.3)'},
+            {x: 650, y: 380, r: 7, color: 'rgba(255, 200, 150, 0.3)'},
+        ];
+        
+        particles.forEach(p => {
+            ctx.fillStyle = p.color;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fill();
+        });
+        
+        // Title
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+        ctx.font = 'bold 48px Arial';
+        ctx.fillText('SeerBase', 600, 550);
+        
+        // Subtitle
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+        ctx.font = '24px Arial';
+        ctx.fillText('Ask. Touch. Get an answer.', 600, 590);
+    </script>
 </body>
 </html>
-
