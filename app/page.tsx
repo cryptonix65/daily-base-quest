@@ -1,8 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useMiniKit } from "@coinbase/onchainkit/minikit";
-import { useWriteContract, useWaitForTransactionReceipt } from "wagmi";
-import { parseUnits, type Address } from "viem";
+import { useSendTransaction, useWaitForTransactionReceipt, useAccount } from "wagmi";
+import { parseUnits, encodeFunctionData, type Address } from "viem";
 import { minikitConfig } from "../minikit.config";
 import styles from "./page.module.css";
 
@@ -45,7 +45,8 @@ const ANSWERS = [
 
 export default function Home() {
   const { isFrameReady, setFrameReady, context } = useMiniKit();
-  const { writeContractAsync } = useWriteContract();
+  const { address, isConnected } = useAccount();
+  const { sendTransactionAsync } = useSendTransaction();
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
   const [isShaking, setIsShaking] = useState(false);
@@ -70,16 +71,28 @@ export default function Home() {
       return;
     }
 
+    // Check if wallet is connected
+    if (!isConnected || !address) {
+      setPaymentError("Please connect your wallet first. The wallet should connect automatically in Base App.");
+      return;
+    }
+
     setPaymentError("");
     setIsProcessingPayment(true);
 
     try {
-      // Send USDC transfer transaction
-      const hash = await writeContractAsync({
-        address: USDC_ADDRESS,
+      // Encode USDC transfer function call
+      const data = encodeFunctionData({
         abi: ERC20_ABI,
         functionName: "transfer",
         args: [ORACLE_WALLET, parseUnits(PAYMENT_AMOUNT, 6)] // USDC has 6 decimals
+      });
+
+      // Send transaction via wagmi (works with MiniKit)
+      const hash = await sendTransactionAsync({
+        to: USDC_ADDRESS,
+        data: data,
+        value: BigInt(0), // ERC20 transfer, no ETH value
       });
 
       setTxHash(hash as Address);
