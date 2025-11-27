@@ -7,12 +7,23 @@ import "./globals.css";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: minikitConfig.miniapp.name,
-    description: minikitConfig.miniapp.description,
+    title: minikitConfig.miniapp.ogTitle || minikitConfig.miniapp.name,
+    description: minikitConfig.miniapp.ogDescription || minikitConfig.miniapp.description,
+    openGraph: {
+      title: minikitConfig.miniapp.ogTitle || minikitConfig.miniapp.name,
+      description: minikitConfig.miniapp.ogDescription || minikitConfig.miniapp.description,
+      images: [minikitConfig.miniapp.ogImageUrl],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: minikitConfig.miniapp.ogTitle || minikitConfig.miniapp.name,
+      description: minikitConfig.miniapp.ogDescription || minikitConfig.miniapp.description,
+      images: [minikitConfig.miniapp.ogImageUrl],
+    },
     other: {
       "fc:frame": JSON.stringify({
         version: minikitConfig.miniapp.version,
-        imageUrl: minikitConfig.miniapp.heroImageUrl,
+        imageUrl: minikitConfig.miniapp.ogImageUrl,
         button: {
           title: `Join the ${minikitConfig.miniapp.name} Waitlist`,
           action: {
