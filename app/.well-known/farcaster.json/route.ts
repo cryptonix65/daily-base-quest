@@ -5,7 +5,14 @@ export async function GET() {
   try {
     const manifest = withValidManifest(minikitConfig);
     
-    return Response.json(manifest, {
+    // Add accountAssociation and baseBuilder to the manifest
+    const fullManifest = {
+      ...manifest,
+      accountAssociation: minikitConfig.accountAssociation,
+      baseBuilder: minikitConfig.baseBuilder,
+    };
+    
+    return Response.json(fullManifest, {
       headers: {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",
