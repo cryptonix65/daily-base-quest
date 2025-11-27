@@ -25,7 +25,7 @@ export const minikitConfig = {
     homeUrl: ROOT_URL,
     webhookUrl: `${ROOT_URL}/api/webhook`,
     primaryCategory: "utility",
-    tags: ["oracle", "predictor", "yes/no", "minimal", "apple", "tool"],
+    tags: ["oracle", "predictor", "yes/no", "minimal", "tool"],
     heroImageUrl: `${ROOT_URL}/hero-apple-magic-ball.png`,
     tagline: "Ask. Touch. Get an answer.",
     ogTitle: "SeerBase",
