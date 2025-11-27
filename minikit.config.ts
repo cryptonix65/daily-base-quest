@@ -14,7 +14,7 @@ export const minikitConfig = {
     signature: ""
   },
   miniapp: {
-    version: "2",
+    version: "1",
     name: "SeerBase",
     subtitle: "Your instant answer Yes or No.",
     description: "Just ask a question and tap the screen.",
