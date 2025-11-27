@@ -19,7 +19,7 @@ export const minikitConfig = {
     subtitle: "Your instant answer Yes or No.",
     description: "Just ask a question and tap the screen.",
     screenshotUrls: [`${ROOT_URL}/screenshot-apple-magic-ball-portrait.png`],
-    iconUrl: `${ROOT_URL}/icon-apple-magic-ball.png`,
+    iconUrl: `${ROOT_URL}/icon-magic-ball-8.png`,
     splashImageUrl: `${ROOT_URL}/hero-apple-magic-ball.png`,
     splashBackgroundColor: "#1a1a1f",
     homeUrl: ROOT_URL,

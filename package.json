@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "convert-embed": "node scripts/convert-svg-to-png.js"
+    "convert-embed": "node scripts/convert-svg-to-png.js",
+    "generate-icon": "node scripts/generate-icon.js"
   },
   "dependencies": {
     "@coinbase/onchainkit": "latest",
