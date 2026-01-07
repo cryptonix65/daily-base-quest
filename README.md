@@ -1,8 +1,6 @@
-# SeerBase - Magic Oracle Mini App
+# Daily Base Quest - Mini App
 
-SeerBase is a mystical oracle Mini App built using OnchainKit and the Farcaster SDK. Get instant Yes or No answers to your burning questions by consulting the magic ball. Just ask a question and tap the screen to reveal your answer!
-
-This app can be published to the Base app and Farcaster as a fully functional Mini App.
+Daily Base Quest is a gamified Mini App for the Base ecosystem: complete daily quests, build a streak, earn points, and climb the leaderboard.
 
 ## Prerequisites
 
@@ -15,12 +13,12 @@ Before getting started, make sure you have:
 
 ## Features
 
-- 🔮 Interactive magic ball interface
-- ✨ Random yes/no answers to your questions
-- 🎨 Beautiful, minimal Apple-inspired design
-- 📱 Fully responsive mobile-first UI
-- 🔗 Integration with Farcaster for sharing
-- ⚡ Built on Base with OnchainKit
+- ✅ Daily quests (DeFi / NFT / Social + check-in)
+- ✅ Points + streak (saved locally for MVP)
+- ✅ Local MVP leaderboard (demo + you)
+- ✅ Share progress via Farcaster/Base (`composeCast`)
+- ✅ Onchain verification via tx hash receipts/logs (swap + NFT mint)
+- ⚡ Built on Base with OnchainKit / MiniKit
 
 ## Getting Started
 
@@ -37,6 +35,7 @@ Create a `.env.local` file and add your environment variables:
 ```bash
 NEXT_PUBLIC_ONCHAINKIT_API_KEY=<Replace-WITH-YOUR-CDP-API-KEY>
 NEXT_PUBLIC_URL=
+NEXT_PUBLIC_DEFI_ROUTER_ALLOWLIST=
 ```
 
 ### 3. Run locally:
@@ -45,21 +44,20 @@ NEXT_PUBLIC_URL=
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to see the magic ball in action!
+Open [http://localhost:3000](http://localhost:3000) to see today’s quests.
 
-## How It Works
+## How It Works (MVP)
 
-1. **Ask a Question**: Type any yes/no question in the input field
-2. **Tap the Ball**: Click on the magic ball (or press Enter)
-3. **Get Your Answer**: Watch the ball shake and reveal your answer
-4. **Ask Again**: Reset and ask another question anytime
-5. **Share**: Share your experience on Farcaster
+1. **Check-in**: claim daily check-in
+2. **DeFi quest**: do a swap on a Base DEX, paste tx hash to verify
+3. **NFT quest**: mint any NFT on Base, paste tx hash to verify
+4. **Social quest**: share your progress from the app
 
 ## Customization
 
 ### Update Manifest Configuration
 
-The `minikit.config.ts` file configures your manifest located at `app/.well-known/farcaster.json`.
+The `minikit.config.ts` file configures your Mini App metadata (name, images, tags, webhook URL, etc.).
 
 You can customize:
 - **name**: The app name displayed to users

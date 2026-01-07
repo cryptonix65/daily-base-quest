@@ -1,7 +1,7 @@
-# SeerBase - Quick Setup Guide
+# Daily Base Quest - Quick Setup Guide
 
 ## Overview
-SeerBase is a magic oracle Mini App that provides instant Yes/No answers to your questions.
+Daily Base Quest is a Mini App with daily quests (DeFi/NFT/Social), streaks, points, and a leaderboard.
 
 ## Quick Start
 
@@ -20,6 +20,13 @@ NEXT_PUBLIC_ONCHAINKIT_API_KEY=your_api_key_here
 
 # Leave empty for local development
 NEXT_PUBLIC_URL=
+
+# Optional (strict DeFi verification):
+# Comma-separated list of allowed DEX router addresses on Base.
+# If set, the DeFi swap quest will only accept swaps where tx.to is in this list.
+# Example:
+# NEXT_PUBLIC_DEFI_ROUTER_ALLOWLIST=0x...,0x...
+NEXT_PUBLIC_DEFI_ROUTER_ALLOWLIST=
 ```
 
 ### 3. Run Development Server
@@ -112,13 +119,14 @@ Share your app URL in a Farcaster post to make it live!
 - Verify your OnchainKit API key is valid
 - Check that the domain in JWT verification matches your deployment
 
-## Features Explained
+## DeFi allowlist (recommended)
 
-### Magic Ball Logic (`app/page.tsx`)
-- User types a question
-- Clicks the ball (or presses Enter)
-- Ball shakes for 1.5 seconds
-- Random answer appears from predefined list
+If you want the DeFi swap quest to count **only** swaps on specific “top DEX” routers (e.g. Uniswap/Aerodrome/Sushi), do this:
+
+1. Make a swap on the DEX in Base app.
+2. Copy the tx hash and verify it in the app.
+3. If it fails with “tx.to (…) is not in NEXT_PUBLIC_DEFI_ROUTER_ALLOWLIST”, copy that `tx.to` router address.
+4. Add it to `NEXT_PUBLIC_DEFI_ROUTER_ALLOWLIST` (comma-separated) and redeploy.
 
 ### Available Answers
 The app provides 15 different responses:
@@ -126,10 +134,8 @@ The app provides 15 different responses:
 - Negative: No, Absolutely not, Don't count on it, etc.
 - Uncertain: Maybe, Ask again later, etc.
 
-### Share Functionality (`app/success/page.tsx`)
-After consulting the oracle, users can:
-- Share on Farcaster using `composeCast`
-- Return to ask another question
+### Share Functionality
+The Social quest shares your progress via `composeCast`.
 
 ## API Endpoints
 
@@ -159,5 +165,22 @@ For questions and issues:
 - [OnchainKit Docs](https://onchainkit.xyz/)
 - [Farcaster Mini Apps](https://miniapps.farcaster.xyz/)
 
-Happy fortune telling! 🔮
+Happy questing!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

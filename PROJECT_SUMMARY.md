@@ -1,31 +1,29 @@
-# SeerBase Mini App - Project Summary
+# Daily Base Quest - Project Summary
 
 ## 🎯 Project Overview
-SeerBase is a fully functional Farcaster Mini App that acts as a magic oracle, providing instant Yes/No answers to user questions. Built following the Base Mini App quickstart guide.
+Daily Base Quest is a Farcaster/Base Mini App with daily quests across the Base ecosystem. Users build streaks, earn points, and climb a (MVP) leaderboard.
 
 ## ✅ Completed Components
 
 ### 1. Main Application (`app/page.tsx`)
-- ✅ Interactive magic ball interface
-- ✅ Question input field
-- ✅ Touch/click to reveal answer
-- ✅ Shake animation during "thinking" phase
-- ✅ 15 pre-defined answers (positive, negative, uncertain)
-- ✅ Reset functionality to ask new questions
+- ✅ Daily quests (DeFi / NFT / Social + check-in)
+- ✅ Points + streak tracking (local MVP via `localStorage`)
+- ✅ DeFi swap verification via tx hash (receipt + ERC20 Transfer patterns; optional router allowlist)
+- ✅ NFT mint verification via tx hash (ERC721/1155 mint detection)
+- ✅ Social share quest via `composeCast`
 - ✅ MiniKit SDK integration for Farcaster context
-- ✅ User greeting with Farcaster display name
+- ✅ User greeting with Farcaster display name (when available)
 
 ### 2. Success/Share Page (`app/success/page.tsx`)
-- ✅ Success confirmation after consultation
+- ✅ Generic completion screen
 - ✅ Share to Farcaster functionality via `composeCast`
-- ✅ Return to oracle button
-- ✅ Animated orb icon
+- ✅ Back to quests button
 - ✅ Clean, minimal design
 
 ### 3. Styling (`page.module.css`, `success/page.module.css`)
 - ✅ Apple-inspired minimal design
 - ✅ Dark background (#1a1a1f)
-- ✅ Gradient magic ball with shadow effects
+- ✅ Gradient “orb” with shadow effects (used as progress widget)
 - ✅ Smooth animations (shake, fade-in, pulse)
 - ✅ Fully responsive mobile-first layout
 - ✅ Modern button styles with hover effects
@@ -69,9 +67,10 @@ SeerBase is a fully functional Farcaster Mini App that acts as a magic oracle, p
 - ✅ Wallet modal configuration
 
 ### 7. Assets (`public/`)
-- ✅ `icon-apple-magic-ball.png` - App icon
-- ✅ `hero-apple-magic-ball.png` - Hero/splash image
-- ✅ `screenshot-apple-magic-ball-portrait.png` - Screenshot
+- ✅ `icon.png` - App icon
+- ✅ `hero.png` - Hero/OG image
+- ✅ `splash.png` - Splash image
+- ✅ `screenshot.png` - Screenshot
 - ✅ All referenced images exist and are properly named
 
 ### 8. Documentation
@@ -94,7 +93,7 @@ SeerBase is a fully functional Farcaster Mini App that acts as a magic oracle, p
 ## 📁 Project Structure
 
 ```
-seer_base1/
+daily-base-quest/
 ├── app/
 │   ├── api/
 │   │   ├── auth/route.ts           # Auth endpoint
@@ -102,15 +101,16 @@ seer_base1/
 │   ├── success/
 │   │   ├── page.tsx                # Success page
 │   │   └── page.module.css         # Success styles
-│   ├── page.tsx                    # Main magic ball
+│   ├── page.tsx                    # Daily quests (DeFi/NFT/Social)
 │   ├── page.module.css             # Main styles
 │   ├── layout.tsx                  # Root layout
 │   ├── rootProvider.tsx            # Providers
 │   └── globals.css                 # Global styles
 ├── public/
-│   ├── icon-apple-magic-ball.png   # App icon
-│   ├── hero-apple-magic-ball.png   # Hero image
-│   └── screenshot-apple-magic-ball-portrait.png
+│   ├── icon.png
+│   ├── hero.png
+│   ├── splash.png
+│   └── screenshot.png
 ├── minikit.config.ts               # Mini app config
 ├── package.json
 ├── README.md                       # Main documentation
@@ -228,4 +228,21 @@ All code is complete, tested, and builds successfully. Ready to:
 ---
 
 **Built with ❤️ following Base Mini App guidelines**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

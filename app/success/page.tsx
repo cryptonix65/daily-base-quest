@@ -11,7 +11,7 @@ export default function Success() {
   
   const handleShare = async () => {
     try {
-      const text = `Just consulted the ${minikitConfig.miniapp.name} oracle! 🔮 Ask your own yes/no questions now!`;
+      const text = `I’m on a streak in ${minikitConfig.miniapp.name} 🔥 Complete today’s quests on Base and climb the leaderboard.`;
       
       const result = await composeCastAsync({
         text: text,
@@ -29,33 +29,33 @@ export default function Success() {
     }
   };
 
-  const handleBackToOracle = () => {
+  const handleBackHome = () => {
     router.push("/");
   };
 
   return (
     <div className={styles.container}>
-      <button className={styles.closeButton} type="button">
+      <button className={styles.closeButton} type="button" onClick={() => router.push("/")}>
         ✕
       </button>
       
       <div className={styles.content}>
         <div className={styles.successMessage}>
-          <div className={styles.orbIcon}>🔮</div>
+          <div className={styles.orbIcon}>🏆</div>
           
-          <h1 className={styles.title}>The Oracle Has Spoken!</h1>
+          <h1 className={styles.title}>Quest Complete</h1>
           
           <p className={styles.subtitle}>
-            Thanks for consulting {minikitConfig.miniapp.name}.<br />
-            Share your experience with others!
+            Keep your streak alive and invite others to join.<br />
+            Share your progress on Farcaster/Base.
           </p>
 
           <div className={styles.buttonGroup}>
             <button onClick={handleShare} className={styles.shareButton}>
               SHARE ON FARCASTER
             </button>
-            <button onClick={handleBackToOracle} className={styles.backButton}>
-              ASK AGAIN
+            <button onClick={handleBackHome} className={styles.backButton}>
+              BACK TO QUESTS
             </button>
           </div>
         </div>

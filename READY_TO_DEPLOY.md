@@ -4,18 +4,11 @@
 
 ### Что уже сделано:
 
-- ✅ **Адрес кошелька обновлен**: `0xeCF05e29657A0f2242796E803E3e59538dE56526`
-- ✅ **Слоган обновлен**: "Ask. Touch. Get an answer."
-- ✅ **Платежная система**: 0.1 USDC за вопрос
-- ✅ **Код протестирован**: Build прошел успешно
-- ✅ **Изменения в GitHub**: Все запушено
-
-### 💰 Платежи будут поступать на:
-```
-0xeCF05e29657A0f2242796E803E3e59538dE56526
-```
-
-Проверьте баланс: https://basescan.org/address/0xeCF05e29657A0f2242796E803E3e59538dE56526
+- ✅ **Daily quests**: DeFi / NFT / Social + check-in
+- ✅ **Система очков и стрика**
+- ✅ **Верификация**: DeFi swap и NFT mint по tx hash (receipt/logs)
+- ✅ **Share**: через `composeCast`
+- ✅ **Код собирается** (build ок)
 
 ---
 
@@ -28,7 +21,7 @@
 ### Шаг 2: Импортируйте репозиторий
 
 1. Авторизуйтесь через **GitHub**
-2. Найдите `Alexeyyyyyy/seer_base1`
+2. Найдите ваш репозиторий (например `cryptonix65/daily-base-quest`)
 3. Нажмите **"Import"**
 
 ### Шаг 3: Настройте проект
@@ -55,11 +48,16 @@ Value: ваш_api_key_здесь
 3. Скопируйте **Client API Key**
 4. Вставьте в поле Value
 
-#### OPTIONAL переменная (можно оставить пустой):
+#### OPTIONAL переменные:
 
 ```
 Name:  NEXT_PUBLIC_URL
 Value: (оставить пустым)
+```
+
+```
+Name:  NEXT_PUBLIC_DEFI_ROUTER_ALLOWLIST
+Value: (пусто = эвристическая проверка swap; можно указать адреса роутеров через запятую)
 ```
 
 ### Шаг 5: Нажмите Deploy! 🚀
@@ -136,7 +134,7 @@ export const minikitConfig = {
   },
   miniapp: {
     version: "2",
-    name: "SeerBase",
+            name: "Daily Base Quest",
     // ... остальное без изменений
   },
 }
@@ -170,11 +168,9 @@ git push origin main
 
 #### Вкладка "Metadata":
 Проверьте что отображается:
-- ✅ Name: SeerBase
-- ✅ Tagline: Ask. Touch. Get an answer.
-- ✅ Description: Just ask a question and tap the screen.
-- ✅ Icon: icon-apple-magic-ball.png
-- ✅ Price: 💎 0.1 USDC per question
+- ✅ Name: Daily Base Quest
+- ✅ Tagline/Description соответствуют `minikit.config.ts`
+- ✅ Icon/Hero/Screenshot грузятся
 
 ---
 
@@ -279,9 +275,26 @@ git push origin main
 
 После деплоя вернитесь к этому файлу для следующих шагов.
 
-**Удачи с запуском SeerBase!** 🔮💰
+**Удачи с запуском Daily Base Quest!**
 
 ---
 
 **P.S.** Не забудьте поделиться ссылкой на ваше приложение после запуска! 🚀
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

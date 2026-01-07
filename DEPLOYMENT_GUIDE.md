@@ -1,7 +1,7 @@
-# 🚀 Руководство по деплою SeerBase на Vercel
+# 🚀 Руководство по деплою Daily Base Quest на Vercel
 
 ## ✅ Текущий статус
-- [x] Код загружен на GitHub: https://github.com/Alexeyyyyyy/seer_base1
+- [ ] Код загружен на GitHub (ваш аккаунт)
 - [ ] Деплой на Vercel
 - [ ] Настройка переменных окружения
 - [ ] Подписание манифеста
@@ -17,14 +17,14 @@
 
 1. **Откройте**: https://vercel.com/new
 2. **Авторизуйтесь** через GitHub (если ещё не авторизованы)
-3. **Выберите** репозиторий `Alexeyyyyyy/seer_base1`
+3. **Выберите** ваш репозиторий (например `cryptonix65/daily-base-quest`)
 4. **Нажмите** "Import"
 
 ### Шаг 2: Настройка проекта
 
 В разделе "Configure Project":
 
-**Project Name**: `seer-base` (или любое другое имя)
+**Project Name**: `daily-base-quest` (или любое другое имя)
 
 **Framework Preset**: Next.js (определится автоматически)
 
@@ -131,7 +131,7 @@ accountAssociation: {
 
 ```bash
 git add minikit.config.ts
-git commit -m "feat: add account association for Farcaster"
+git commit -m "feat: add account association"
 git push origin main
 ```
 
@@ -158,13 +158,11 @@ Vercel автоматически задеплоит изменения!
 ### Проверка функциональности
 
 Откройте ваш деплой и проверьте:
-- ✅ Загружается ли magic ball
-- ✅ Работает ли ввод вопроса
-- ✅ Анимация shake
-- ✅ Показывается ли ответ
-- ✅ Работает ли кнопка "Ask Again"
-- ✅ Страница /success загружается
-- ✅ Кнопка Share работает
+- ✅ Отображаются daily quests
+- ✅ Работает чек-ин / share
+- ✅ Верификация DeFi swap по tx hash
+- ✅ Верификация NFT mint по tx hash
+- ✅ Лидерборд отображается
 
 ---
 
@@ -248,4 +246,21 @@ npx vercel env rm <name> production
 - 🔮 [Farcaster Developer Docs](https://docs.farcaster.xyz/)
 
 **Удачи с деплоем! 🚀**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
