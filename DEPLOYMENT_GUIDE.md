@@ -249,3 +249,20 @@ npx vercel env rm <name> production
 
 **Удачи с деплоем! 🚀**
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

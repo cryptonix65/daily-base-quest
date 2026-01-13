@@ -33,7 +33,7 @@ export const minikitConfig = {
     ogImageUrl: `${ROOT_URL}/magic-ball-embed.png`,
   },
   baseBuilder: {
-    ownerAddress: "0x476a4bd984714e970Eb8330Bc46A52469C0A57Dd"
+    ownerAddress: "0xeCF05e29657A0f2242796E803E3e59538dE56526"
   }
 } as const;
 

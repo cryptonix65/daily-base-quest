@@ -21,3 +21,20 @@ console.log(`
 convert -background none -size 1200x630 public/magic-ball-embed.svg public/magic-ball-embed.png
 `);
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
